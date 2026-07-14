@@ -1,32 +1,72 @@
-# React + TypeScript + Vite
+# Think Of Fashion
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Bespoke styling and grooming for corporate, casual, and wedding wardrobes. Based in Accra, Ghana, available to travel worldwide.
 
-Currently, two official plugins are available:
+Live site built with Vite, React, TypeScript, Tailwind CSS, and shadcn/ui components.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Styling services** — Corporate, Casual, Weddings, and Groom & Best Men Styling, each with its own page, deposit-based booking, and gallery
+- **Shop catalog** — Suits, Shoes, Sunglasses, Sneakers, Shirts & T-Shirts, Wrist Watches, and Socks, filterable by Gentlemen / Ladies / Children, with more categories planned
+- **Cross-linking** between styling services and relevant shop categories ("Shop the Look" / "Perfect For")
+- **Booking flow** with Paystack deposit checkout (client-side) and a WhatsApp fallback for enquiries
+- **Contact** via WhatsApp and phone throughout the site
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+The dev server runs at `http://localhost:5173`.
+
+### Environment variables
+
+Copy `.env.example` to `.env` and set your Paystack public key to enable online deposit payments:
+
+```bash
+cp .env.example .env
+```
+
+```
+VITE_PAYSTACK_PUBLIC_KEY=pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Without a key, the booking page falls back to a WhatsApp-only flow.
+
+## Scripts
+
+| Command           | Description                        |
+| ------------------ | ----------------------------------- |
+| `npm run dev`       | Start the Vite dev server           |
+| `npm run build`     | Type-check and build for production |
+| `npm run preview`   | Preview the production build        |
+| `npm run lint`      | Run oxlint                          |
+
+## Tech Stack
+
+- [Vite](https://vite.dev/) + [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/) (Radix primitives)
+- [React Router](https://reactrouter.com/)
+- [Paystack Inline JS](https://paystack.com/docs/payments/accept-payments/) for deposit checkout
+
+## Project Structure
+
+```
+src/
+  components/
+    icons/       # Custom icon components
+    layout/      # Navbar, Footer, page shell
+    sections/    # Homepage section blocks (Hero, Gallery, etc.)
+    ui/          # shadcn/ui components
+  data/          # Site content: categories.ts (services), products.ts (shop)
+  lib/           # Utilities (Paystack helper, cn)
+  pages/         # Route-level pages
+```
+
+## Notes
+
+- Deposit amounts in `src/data/categories.ts` are placeholders — update to real pricing before launch.
+- Shop category imagery in `src/data/products.ts` is placeholder photography — swap in real product photos once available.
