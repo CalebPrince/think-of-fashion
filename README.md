@@ -66,6 +66,12 @@ src/
   pages/         # Route-level pages
 ```
 
+## Deployment
+
+Deployed on [Netlify](https://netlify.com) (a custom domain is planned). `netlify.toml` sets the build command, publish directory, and the SPA fallback redirect required for client-side routes (e.g. `/suits`, `/corporate`) to work on direct load/refresh.
+
+To connect: in the Netlify dashboard, "Add new site" → "Import an existing project" → pick this GitHub repo. Build settings are picked up automatically from `netlify.toml`. Set `VITE_PAYSTACK_PUBLIC_KEY` under Site settings → Environment variables to enable live deposit payments.
+
 ## Notes
 
 - Deposit amounts in `src/data/categories.ts` are placeholders — update to real pricing before launch.
